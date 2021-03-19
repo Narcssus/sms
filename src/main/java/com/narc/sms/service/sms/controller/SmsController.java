@@ -1,5 +1,6 @@
 package com.narc.sms.service.sms.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.narc.sms.service.sms.service.SmsService;
 import io.swagger.annotations.Api;
@@ -29,7 +30,7 @@ public class SmsController {
     @Value("${sms.adminPhone}")
     private String adminPhone;
 
-    @PostMapping(value = "sendAlimamaAuthCodeNotice", produces = "application/text;charset=UTF-8")
+    @PostMapping(value = "sendAlimamaAuthCodeNotice")
     public JSONObject sendAlimamaAuthCodeNotice() {
         try {
             log.debug("收到sendAlimamaAuthCodeNotice消息");
@@ -43,6 +44,19 @@ public class SmsController {
         }
     }
 
+    @PostMapping(value = "addSmsTask")
+    public JSONObject addSmsTask(String param) {
+        log.debug("收到addSmsTask消息:{}", param);
+        JSONObject paramObject = JSON.parseObject(param);
+        return smsService.addSmsTask(paramObject);
+    }
+
+    @GetMapping(value = "getSmsTask")
+    public JSONObject getSmsTask(String param) {
+        log.debug("收到getSmsTask消息:{}", param);
+        JSONObject paramObject = JSON.parseObject(param);
+        return smsService.getSmsTask(paramObject);
+    }
 
 
 }

@@ -10,4 +10,9 @@ import com.alibaba.fastjson.JSONObject;
 public interface SmsService {
 
     void sendMessage(String templateId, String[] phones, String[] templateParam);
+
+    JSONObject addSmsTask(JSONObject req);
+
+    JSONObject getSmsTask(JSONObject req);
+
 }
