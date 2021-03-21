@@ -36,7 +36,7 @@ public class SmsController {
             log.debug("收到sendAlimamaAuthCodeNotice消息");
             String[] phones = {adminPhone};
             String[] templateParam = {};
-            smsService.sendMessage("892286", phones, templateParam);
+            smsService.sendMessage("892286", phones, templateParam, null);
             return new JSONObject();
         } catch (Exception e) {
             log.error("", e);

@@ -57,7 +57,7 @@ public class SmsServiceImpl implements SmsService {
 
 
     @Override
-    public void sendMessage(String templateId, String[] phones, String[] templateParam) {
+    public void sendMessage(String templateId, String[] phones, String[] templateParam, String taskId) {
         Credential cred = new Credential(secretId, secretKey);
         ClientProfile clientProfile = new ClientProfile();
         clientProfile.setSignMethod(ClientProfile.SIGN_TC3_256);
@@ -79,6 +79,7 @@ public class SmsServiceImpl implements SmsService {
         smsLog.setTemplateContent(smsTemplateDaoService.getContentById(sendSmsRequest.getTemplateID()));
         smsLog.setPhoneNumberSet(JSON.toJSONString(sendSmsRequest.getPhoneNumberSet()));
         smsLog.setTemplateParam(JSON.toJSONString(sendSmsRequest.getTemplateParamSet()));
+        smsLog.setTaskId(taskId);
         try {
             SendSmsResponse sendSmsResponse = smsClient.SendSms(sendSmsRequest);
             smsLog.setRequestId(sendSmsResponse.getRequestId());

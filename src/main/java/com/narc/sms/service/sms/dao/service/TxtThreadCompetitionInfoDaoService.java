@@ -18,4 +18,14 @@ public class TxtThreadCompetitionInfoDaoService {
 
     @Resource
     private TxtThreadCompetitionInfoMapperExtend txtThreadCompetitionInfoMapperExtend;
+
+    public TxtThreadCompetitionInfo getCompetitionInfo(int threadId) {
+        return txtThreadCompetitionInfoMapper.selectByPrimaryKey(threadId);
+    }
+
+    public void updateCompetitionInfo(TxtThreadCompetitionInfo info) {
+        txtThreadCompetitionInfoMapper.updateByPrimaryKeySelective(info);
+    }
+
+
 }
