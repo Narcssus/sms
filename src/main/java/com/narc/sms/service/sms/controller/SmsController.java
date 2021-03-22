@@ -44,6 +44,21 @@ public class SmsController {
         }
     }
 
+    @PostMapping(value = "sendAlimamaUndoOrderNotice")
+    public JSONObject sendAlimamaUndoOrderNotice(String param) {
+        try {
+            log.debug("收到sendAlimamaUndoOrderNotice消息:{}",param);
+            JSONObject jsonObject = JSON.parseObject(param);
+            String[] phones = {adminPhone};
+            String[] templateParam = {jsonObject.getString("num")};
+            smsService.sendMessage("899355", phones, templateParam, null);
+            return new JSONObject();
+        } catch (Exception e) {
+            log.error("", e);
+            return new JSONObject();
+        }
+    }
+
     @PostMapping(value = "addSmsTask")
     public JSONObject addSmsTask(String param) {
         log.debug("收到addSmsTask消息:{}", param);

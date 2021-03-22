@@ -715,6 +715,216 @@ public class TxtSmsTaskExample {
             return (Criteria) this;
         }
 
+        public Criteria andExtDataAIsNull() {
+            addCriterion("EXT_DATA_A is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andExtDataAIsNotNull() {
+            addCriterion("EXT_DATA_A is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andExtDataAEqualTo(String value) {
+            addCriterion("EXT_DATA_A =", value, "extDataA");
+            return (Criteria) this;
+        }
+
+        public Criteria andExtDataANotEqualTo(String value) {
+            addCriterion("EXT_DATA_A <>", value, "extDataA");
+            return (Criteria) this;
+        }
+
+        public Criteria andExtDataAGreaterThan(String value) {
+            addCriterion("EXT_DATA_A >", value, "extDataA");
+            return (Criteria) this;
+        }
+
+        public Criteria andExtDataAGreaterThanOrEqualTo(String value) {
+            addCriterion("EXT_DATA_A >=", value, "extDataA");
+            return (Criteria) this;
+        }
+
+        public Criteria andExtDataALessThan(String value) {
+            addCriterion("EXT_DATA_A <", value, "extDataA");
+            return (Criteria) this;
+        }
+
+        public Criteria andExtDataALessThanOrEqualTo(String value) {
+            addCriterion("EXT_DATA_A <=", value, "extDataA");
+            return (Criteria) this;
+        }
+
+        public Criteria andExtDataALike(String value) {
+            addCriterion("EXT_DATA_A like", value, "extDataA");
+            return (Criteria) this;
+        }
+
+        public Criteria andExtDataANotLike(String value) {
+            addCriterion("EXT_DATA_A not like", value, "extDataA");
+            return (Criteria) this;
+        }
+
+        public Criteria andExtDataAIn(List<String> values) {
+            addCriterion("EXT_DATA_A in", values, "extDataA");
+            return (Criteria) this;
+        }
+
+        public Criteria andExtDataANotIn(List<String> values) {
+            addCriterion("EXT_DATA_A not in", values, "extDataA");
+            return (Criteria) this;
+        }
+
+        public Criteria andExtDataABetween(String value1, String value2) {
+            addCriterion("EXT_DATA_A between", value1, value2, "extDataA");
+            return (Criteria) this;
+        }
+
+        public Criteria andExtDataANotBetween(String value1, String value2) {
+            addCriterion("EXT_DATA_A not between", value1, value2, "extDataA");
+            return (Criteria) this;
+        }
+
+        public Criteria andExtDataBIsNull() {
+            addCriterion("EXT_DATA_B is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andExtDataBIsNotNull() {
+            addCriterion("EXT_DATA_B is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andExtDataBEqualTo(String value) {
+            addCriterion("EXT_DATA_B =", value, "extDataB");
+            return (Criteria) this;
+        }
+
+        public Criteria andExtDataBNotEqualTo(String value) {
+            addCriterion("EXT_DATA_B <>", value, "extDataB");
+            return (Criteria) this;
+        }
+
+        public Criteria andExtDataBGreaterThan(String value) {
+            addCriterion("EXT_DATA_B >", value, "extDataB");
+            return (Criteria) this;
+        }
+
+        public Criteria andExtDataBGreaterThanOrEqualTo(String value) {
+            addCriterion("EXT_DATA_B >=", value, "extDataB");
+            return (Criteria) this;
+        }
+
+        public Criteria andExtDataBLessThan(String value) {
+            addCriterion("EXT_DATA_B <", value, "extDataB");
+            return (Criteria) this;
+        }
+
+        public Criteria andExtDataBLessThanOrEqualTo(String value) {
+            addCriterion("EXT_DATA_B <=", value, "extDataB");
+            return (Criteria) this;
+        }
+
+        public Criteria andExtDataBLike(String value) {
+            addCriterion("EXT_DATA_B like", value, "extDataB");
+            return (Criteria) this;
+        }
+
+        public Criteria andExtDataBNotLike(String value) {
+            addCriterion("EXT_DATA_B not like", value, "extDataB");
+            return (Criteria) this;
+        }
+
+        public Criteria andExtDataBIn(List<String> values) {
+            addCriterion("EXT_DATA_B in", values, "extDataB");
+            return (Criteria) this;
+        }
+
+        public Criteria andExtDataBNotIn(List<String> values) {
+            addCriterion("EXT_DATA_B not in", values, "extDataB");
+            return (Criteria) this;
+        }
+
+        public Criteria andExtDataBBetween(String value1, String value2) {
+            addCriterion("EXT_DATA_B between", value1, value2, "extDataB");
+            return (Criteria) this;
+        }
+
+        public Criteria andExtDataBNotBetween(String value1, String value2) {
+            addCriterion("EXT_DATA_B not between", value1, value2, "extDataB");
+            return (Criteria) this;
+        }
+
+        public Criteria andExtDataCIsNull() {
+            addCriterion("EXT_DATA_C is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andExtDataCIsNotNull() {
+            addCriterion("EXT_DATA_C is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andExtDataCEqualTo(String value) {
+            addCriterion("EXT_DATA_C =", value, "extDataC");
+            return (Criteria) this;
+        }
+
+        public Criteria andExtDataCNotEqualTo(String value) {
+            addCriterion("EXT_DATA_C <>", value, "extDataC");
+            return (Criteria) this;
+        }
+
+        public Criteria andExtDataCGreaterThan(String value) {
+            addCriterion("EXT_DATA_C >", value, "extDataC");
+            return (Criteria) this;
+        }
+
+        public Criteria andExtDataCGreaterThanOrEqualTo(String value) {
+            addCriterion("EXT_DATA_C >=", value, "extDataC");
+            return (Criteria) this;
+        }
+
+        public Criteria andExtDataCLessThan(String value) {
+            addCriterion("EXT_DATA_C <", value, "extDataC");
+            return (Criteria) this;
+        }
+
+        public Criteria andExtDataCLessThanOrEqualTo(String value) {
+            addCriterion("EXT_DATA_C <=", value, "extDataC");
+            return (Criteria) this;
+        }
+
+        public Criteria andExtDataCLike(String value) {
+            addCriterion("EXT_DATA_C like", value, "extDataC");
+            return (Criteria) this;
+        }
+
+        public Criteria andExtDataCNotLike(String value) {
+            addCriterion("EXT_DATA_C not like", value, "extDataC");
+            return (Criteria) this;
+        }
+
+        public Criteria andExtDataCIn(List<String> values) {
+            addCriterion("EXT_DATA_C in", values, "extDataC");
+            return (Criteria) this;
+        }
+
+        public Criteria andExtDataCNotIn(List<String> values) {
+            addCriterion("EXT_DATA_C not in", values, "extDataC");
+            return (Criteria) this;
+        }
+
+        public Criteria andExtDataCBetween(String value1, String value2) {
+            addCriterion("EXT_DATA_C between", value1, value2, "extDataC");
+            return (Criteria) this;
+        }
+
+        public Criteria andExtDataCNotBetween(String value1, String value2) {
+            addCriterion("EXT_DATA_C not between", value1, value2, "extDataC");
+            return (Criteria) this;
+        }
+
         public Criteria andCreatedDatetimeIsNull() {
             addCriterion("CREATED_DATETIME is null");
             return (Criteria) this;

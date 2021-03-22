@@ -11,6 +11,9 @@
     <result column="TASK_TYPE" jdbcType="VARCHAR" property="taskType" />
     <result column="SEND_TIME" jdbcType="TIMESTAMP" property="sendTime" />
     <result column="CRON_EXPRESSION" jdbcType="VARCHAR" property="cronExpression" />
+    <result column="EXT_DATA_A" jdbcType="VARCHAR" property="extDataA" />
+    <result column="EXT_DATA_B" jdbcType="VARCHAR" property="extDataB" />
+    <result column="EXT_DATA_C" jdbcType="VARCHAR" property="extDataC" />
     <result column="CREATED_DATETIME" jdbcType="TIMESTAMP" property="createdDatetime" />
     <result column="CREATED_ID" jdbcType="VARCHAR" property="createdId" />
     <result column="MODIFIED_DATETIME" jdbcType="TIMESTAMP" property="modifiedDatetime" />
@@ -76,7 +79,8 @@
   </sql>
   <sql id="Base_Column_List">
     ID, TASK_ID, TEMPLATE_ID, TEMPLATE_CONTENT, PHONE_NUMBER_SET, TEMPLATE_PARAM, TASK_TYPE, 
-    SEND_TIME, CRON_EXPRESSION, CREATED_DATETIME, CREATED_ID, MODIFIED_DATETIME, MODIFIED_ID
+    SEND_TIME, CRON_EXPRESSION, EXT_DATA_A, EXT_DATA_B, EXT_DATA_C, CREATED_DATETIME, 
+    CREATED_ID, MODIFIED_DATETIME, MODIFIED_ID
   </sql>
   <select id="selectByExample" parameterType="com.narc.sms.service.sms.entity.TxtSmsTaskExample" resultMap="BaseResultMap">
     select
@@ -112,11 +116,13 @@
     insert into TXT_SMS_TASK (ID, TASK_ID, TEMPLATE_ID, 
       TEMPLATE_CONTENT, PHONE_NUMBER_SET, TEMPLATE_PARAM, 
       TASK_TYPE, SEND_TIME, CRON_EXPRESSION, 
+      EXT_DATA_A, EXT_DATA_B, EXT_DATA_C, 
       CREATED_DATETIME, CREATED_ID, MODIFIED_DATETIME, 
       MODIFIED_ID)
     values (#{id,jdbcType=INTEGER}, #{taskId,jdbcType=VARCHAR}, #{templateId,jdbcType=VARCHAR}, 
       #{templateContent,jdbcType=VARCHAR}, #{phoneNumberSet,jdbcType=VARCHAR}, #{templateParam,jdbcType=VARCHAR}, 
       #{taskType,jdbcType=VARCHAR}, #{sendTime,jdbcType=TIMESTAMP}, #{cronExpression,jdbcType=VARCHAR}, 
+      #{extDataA,jdbcType=VARCHAR}, #{extDataB,jdbcType=VARCHAR}, #{extDataC,jdbcType=VARCHAR}, 
       #{createdDatetime,jdbcType=TIMESTAMP}, #{createdId,jdbcType=VARCHAR}, #{modifiedDatetime,jdbcType=TIMESTAMP}, 
       #{modifiedId,jdbcType=VARCHAR})
   </insert>
@@ -149,6 +155,15 @@
       </if>
       <if test="cronExpression != null">
         CRON_EXPRESSION,
+      </if>
+      <if test="extDataA != null">
+        EXT_DATA_A,
+      </if>
+      <if test="extDataB != null">
+        EXT_DATA_B,
+      </if>
+      <if test="extDataC != null">
+        EXT_DATA_C,
       </if>
       <if test="createdDatetime != null">
         CREATED_DATETIME,
@@ -190,6 +205,15 @@
       </if>
       <if test="cronExpression != null">
         #{cronExpression,jdbcType=VARCHAR},
+      </if>
+      <if test="extDataA != null">
+        #{extDataA,jdbcType=VARCHAR},
+      </if>
+      <if test="extDataB != null">
+        #{extDataB,jdbcType=VARCHAR},
+      </if>
+      <if test="extDataC != null">
+        #{extDataC,jdbcType=VARCHAR},
       </if>
       <if test="createdDatetime != null">
         #{createdDatetime,jdbcType=TIMESTAMP},
@@ -241,6 +265,15 @@
       <if test="record.cronExpression != null">
         CRON_EXPRESSION = #{record.cronExpression,jdbcType=VARCHAR},
       </if>
+      <if test="record.extDataA != null">
+        EXT_DATA_A = #{record.extDataA,jdbcType=VARCHAR},
+      </if>
+      <if test="record.extDataB != null">
+        EXT_DATA_B = #{record.extDataB,jdbcType=VARCHAR},
+      </if>
+      <if test="record.extDataC != null">
+        EXT_DATA_C = #{record.extDataC,jdbcType=VARCHAR},
+      </if>
       <if test="record.createdDatetime != null">
         CREATED_DATETIME = #{record.createdDatetime,jdbcType=TIMESTAMP},
       </if>
@@ -269,6 +302,9 @@
       TASK_TYPE = #{record.taskType,jdbcType=VARCHAR},
       SEND_TIME = #{record.sendTime,jdbcType=TIMESTAMP},
       CRON_EXPRESSION = #{record.cronExpression,jdbcType=VARCHAR},
+      EXT_DATA_A = #{record.extDataA,jdbcType=VARCHAR},
+      EXT_DATA_B = #{record.extDataB,jdbcType=VARCHAR},
+      EXT_DATA_C = #{record.extDataC,jdbcType=VARCHAR},
       CREATED_DATETIME = #{record.createdDatetime,jdbcType=TIMESTAMP},
       CREATED_ID = #{record.createdId,jdbcType=VARCHAR},
       MODIFIED_DATETIME = #{record.modifiedDatetime,jdbcType=TIMESTAMP},
@@ -304,6 +340,15 @@
       <if test="cronExpression != null">
         CRON_EXPRESSION = #{cronExpression,jdbcType=VARCHAR},
       </if>
+      <if test="extDataA != null">
+        EXT_DATA_A = #{extDataA,jdbcType=VARCHAR},
+      </if>
+      <if test="extDataB != null">
+        EXT_DATA_B = #{extDataB,jdbcType=VARCHAR},
+      </if>
+      <if test="extDataC != null">
+        EXT_DATA_C = #{extDataC,jdbcType=VARCHAR},
+      </if>
       <if test="createdDatetime != null">
         CREATED_DATETIME = #{createdDatetime,jdbcType=TIMESTAMP},
       </if>
@@ -329,6 +374,9 @@
       TASK_TYPE = #{taskType,jdbcType=VARCHAR},
       SEND_TIME = #{sendTime,jdbcType=TIMESTAMP},
       CRON_EXPRESSION = #{cronExpression,jdbcType=VARCHAR},
+      EXT_DATA_A = #{extDataA,jdbcType=VARCHAR},
+      EXT_DATA_B = #{extDataB,jdbcType=VARCHAR},
+      EXT_DATA_C = #{extDataC,jdbcType=VARCHAR},
       CREATED_DATETIME = #{createdDatetime,jdbcType=TIMESTAMP},
       CREATED_ID = #{createdId,jdbcType=VARCHAR},
       MODIFIED_DATETIME = #{modifiedDatetime,jdbcType=TIMESTAMP},
@@ -338,7 +386,8 @@
   <sql id="Batch_Insert_Column_List">
     #{item.id}, #{item.taskId}, #{item.templateId}, #{item.templateContent}, #{item.phoneNumberSet}, 
     #{item.templateParam}, #{item.taskType}, #{item.sendTime}, #{item.cronExpression}, 
-    #{item.createdDatetime}, #{item.createdId}, #{item.modifiedDatetime}, #{item.modifiedId}
+    #{item.extDataA}, #{item.extDataB}, #{item.extDataC}, #{item.createdDatetime}, #{item.createdId}, 
+    #{item.modifiedDatetime}, #{item.modifiedId}
   </sql>
   <insert id="insertBatch" parameterType="java.util.List">
     insert into TXT_SMS_TASK(

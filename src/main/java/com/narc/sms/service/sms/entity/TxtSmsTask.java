@@ -9,7 +9,7 @@ import lombok.Data;
  * 腾讯云-短信任务
  * 
  * @author Narc
- * @date 2021-03-19
+ * @date 2021-03-22
  */
 @Data
 public class TxtSmsTask {
@@ -75,6 +75,27 @@ public class TxtSmsTask {
      */
     @Size(max=20)
     private String cronExpression;
+
+    /**
+     * EXT_DATA_A
+     * 业务字段A
+     */
+    @Size(max=255)
+    private String extDataA;
+
+    /**
+     * EXT_DATA_B
+     * 业务字段B
+     */
+    @Size(max=255)
+    private String extDataB;
+
+    /**
+     * EXT_DATA_C
+     * 业务字段C
+     */
+    @Size(max=255)
+    private String extDataC;
 
     /**
      * CREATED_DATETIME
