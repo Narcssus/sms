@@ -13,6 +13,8 @@ public interface SmsService {
 
     JSONObject addSmsTask(JSONObject req);
 
+    JSONObject cancelSmsTask(JSONObject req);
+
     JSONObject getSmsTask(JSONObject req);
 
 }

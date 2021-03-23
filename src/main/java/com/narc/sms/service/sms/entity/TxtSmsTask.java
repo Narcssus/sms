@@ -9,7 +9,7 @@ import lombok.Data;
  * 腾讯云-短信任务
  * 
  * @author Narc
- * @date 2021-03-22
+ * @date 2021-03-23
  */
 @Data
 public class TxtSmsTask {
@@ -75,6 +75,13 @@ public class TxtSmsTask {
      */
     @Size(max=20)
     private String cronExpression;
+
+    /**
+     * STATUS
+     * 任务状态：0-未执行；1-执行完成；2-取消
+     */
+    @Size(max=2)
+    private String status;
 
     /**
      * EXT_DATA_A

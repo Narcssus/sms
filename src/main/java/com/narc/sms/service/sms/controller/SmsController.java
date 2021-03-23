@@ -66,6 +66,14 @@ public class SmsController {
         return smsService.addSmsTask(paramObject);
     }
 
+    @PostMapping(value = "cancelSmsTask")
+    public JSONObject cancelSmsTask(String param) {
+        log.debug("收到cancelSmsTask消息:{}", param);
+        JSONObject paramObject = JSON.parseObject(param);
+        return smsService.cancelSmsTask(paramObject);
+    }
+
+
     @GetMapping(value = "getSmsTask")
     public JSONObject getSmsTask(String param) {
         log.debug("收到getSmsTask消息:{}", param);

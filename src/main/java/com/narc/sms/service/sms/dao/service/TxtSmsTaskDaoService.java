@@ -35,20 +35,42 @@ public class TxtSmsTaskDaoService {
 
     public List<TxtSmsTask> selectByPhoneNo(String phoneNo) {
         TxtSmsTaskExample example = new TxtSmsTaskExample();
-        example.createCriteria().andPhoneNumberSetEqualTo(JSON.toJSONString(Collections.singletonList(phoneNo)));
+        example.createCriteria().andPhoneNumberSetEqualTo(JSON.toJSONString(Collections.singletonList(phoneNo)))
+                .andStatusEqualTo("0");
         return txtSmsTaskMapper.selectByExample(example);
     }
 
-    public List<TxtSmsTask> selectBySendTime(Date startTime, Date endTime) {
+    public List<TxtSmsTask> selectByPhoneNoAndSeqNo(String phoneNo, String seqNo) {
         TxtSmsTaskExample example = new TxtSmsTaskExample();
-        // endTime >= SEND_TIME && SEND_TIME > startTime
-        example.createCriteria().andSendTimeLessThanOrEqualTo(endTime)
-                .andSendTimeGreaterThan(startTime);
+        example.createCriteria().andPhoneNumberSetEqualTo(JSON.toJSONString(Collections.singletonList(phoneNo)))
+                .andExtDataAEqualTo(seqNo)
+                .andStatusEqualTo("0");
         return txtSmsTaskMapper.selectByExample(example);
     }
 
-    public void updateByPrimaryKeySelective(TxtSmsTask task){
+    public List<TxtSmsTask> selectBySendTime(Date endTime) {
+        TxtSmsTaskExample example = new TxtSmsTaskExample();
+        // SEND_TIME <= endTime
+        example.createCriteria()
+                .andStatusEqualTo("0")
+                .andSendTimeLessThanOrEqualTo(endTime);
+        return txtSmsTaskMapper.selectByExample(example);
+    }
+
+    public void updateByPrimaryKeySelective(TxtSmsTask task) {
         txtSmsTaskMapper.updateByPrimaryKeySelective(task);
     }
+
+    public int cancelTask(List<Integer> ids) {
+        TxtSmsTaskExample example = new TxtSmsTaskExample();
+        example.createCriteria()
+                .andStatusEqualTo("0")
+                .andIdIn(ids);
+        TxtSmsTask newTask = new TxtSmsTask();
+        newTask.setStatus("2");
+        newTask.setModifiedDatetime(new Date());
+        return txtSmsTaskMapper.updateByExampleSelective(newTask, example);
+    }
+
 
 }

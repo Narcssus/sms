@@ -11,6 +11,7 @@
     <result column="TASK_TYPE" jdbcType="VARCHAR" property="taskType" />
     <result column="SEND_TIME" jdbcType="TIMESTAMP" property="sendTime" />
     <result column="CRON_EXPRESSION" jdbcType="VARCHAR" property="cronExpression" />
+    <result column="STATUS" jdbcType="VARCHAR" property="status" />
     <result column="EXT_DATA_A" jdbcType="VARCHAR" property="extDataA" />
     <result column="EXT_DATA_B" jdbcType="VARCHAR" property="extDataB" />
     <result column="EXT_DATA_C" jdbcType="VARCHAR" property="extDataC" />
@@ -79,7 +80,7 @@
   </sql>
   <sql id="Base_Column_List">
     ID, TASK_ID, TEMPLATE_ID, TEMPLATE_CONTENT, PHONE_NUMBER_SET, TEMPLATE_PARAM, TASK_TYPE, 
-    SEND_TIME, CRON_EXPRESSION, EXT_DATA_A, EXT_DATA_B, EXT_DATA_C, CREATED_DATETIME, 
+    SEND_TIME, CRON_EXPRESSION, STATUS, EXT_DATA_A, EXT_DATA_B, EXT_DATA_C, CREATED_DATETIME, 
     CREATED_ID, MODIFIED_DATETIME, MODIFIED_ID
   </sql>
   <select id="selectByExample" parameterType="com.narc.sms.service.sms.entity.TxtSmsTaskExample" resultMap="BaseResultMap">
@@ -116,15 +117,15 @@
     insert into TXT_SMS_TASK (ID, TASK_ID, TEMPLATE_ID, 
       TEMPLATE_CONTENT, PHONE_NUMBER_SET, TEMPLATE_PARAM, 
       TASK_TYPE, SEND_TIME, CRON_EXPRESSION, 
-      EXT_DATA_A, EXT_DATA_B, EXT_DATA_C, 
-      CREATED_DATETIME, CREATED_ID, MODIFIED_DATETIME, 
-      MODIFIED_ID)
+      STATUS, EXT_DATA_A, EXT_DATA_B, 
+      EXT_DATA_C, CREATED_DATETIME, CREATED_ID, 
+      MODIFIED_DATETIME, MODIFIED_ID)
     values (#{id,jdbcType=INTEGER}, #{taskId,jdbcType=VARCHAR}, #{templateId,jdbcType=VARCHAR}, 
       #{templateContent,jdbcType=VARCHAR}, #{phoneNumberSet,jdbcType=VARCHAR}, #{templateParam,jdbcType=VARCHAR}, 
       #{taskType,jdbcType=VARCHAR}, #{sendTime,jdbcType=TIMESTAMP}, #{cronExpression,jdbcType=VARCHAR}, 
-      #{extDataA,jdbcType=VARCHAR}, #{extDataB,jdbcType=VARCHAR}, #{extDataC,jdbcType=VARCHAR}, 
-      #{createdDatetime,jdbcType=TIMESTAMP}, #{createdId,jdbcType=VARCHAR}, #{modifiedDatetime,jdbcType=TIMESTAMP}, 
-      #{modifiedId,jdbcType=VARCHAR})
+      #{status,jdbcType=VARCHAR}, #{extDataA,jdbcType=VARCHAR}, #{extDataB,jdbcType=VARCHAR}, 
+      #{extDataC,jdbcType=VARCHAR}, #{createdDatetime,jdbcType=TIMESTAMP}, #{createdId,jdbcType=VARCHAR}, 
+      #{modifiedDatetime,jdbcType=TIMESTAMP}, #{modifiedId,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.narc.sms.service.sms.entity.TxtSmsTask">
     insert into TXT_SMS_TASK
@@ -155,6 +156,9 @@
       </if>
       <if test="cronExpression != null">
         CRON_EXPRESSION,
+      </if>
+      <if test="status != null">
+        STATUS,
       </if>
       <if test="extDataA != null">
         EXT_DATA_A,
@@ -205,6 +209,9 @@
       </if>
       <if test="cronExpression != null">
         #{cronExpression,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
       </if>
       <if test="extDataA != null">
         #{extDataA,jdbcType=VARCHAR},
@@ -265,6 +272,9 @@
       <if test="record.cronExpression != null">
         CRON_EXPRESSION = #{record.cronExpression,jdbcType=VARCHAR},
       </if>
+      <if test="record.status != null">
+        STATUS = #{record.status,jdbcType=VARCHAR},
+      </if>
       <if test="record.extDataA != null">
         EXT_DATA_A = #{record.extDataA,jdbcType=VARCHAR},
       </if>
@@ -302,6 +312,7 @@
       TASK_TYPE = #{record.taskType,jdbcType=VARCHAR},
       SEND_TIME = #{record.sendTime,jdbcType=TIMESTAMP},
       CRON_EXPRESSION = #{record.cronExpression,jdbcType=VARCHAR},
+      STATUS = #{record.status,jdbcType=VARCHAR},
       EXT_DATA_A = #{record.extDataA,jdbcType=VARCHAR},
       EXT_DATA_B = #{record.extDataB,jdbcType=VARCHAR},
       EXT_DATA_C = #{record.extDataC,jdbcType=VARCHAR},
@@ -340,6 +351,9 @@
       <if test="cronExpression != null">
         CRON_EXPRESSION = #{cronExpression,jdbcType=VARCHAR},
       </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
       <if test="extDataA != null">
         EXT_DATA_A = #{extDataA,jdbcType=VARCHAR},
       </if>
@@ -374,6 +388,7 @@
       TASK_TYPE = #{taskType,jdbcType=VARCHAR},
       SEND_TIME = #{sendTime,jdbcType=TIMESTAMP},
       CRON_EXPRESSION = #{cronExpression,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
       EXT_DATA_A = #{extDataA,jdbcType=VARCHAR},
       EXT_DATA_B = #{extDataB,jdbcType=VARCHAR},
       EXT_DATA_C = #{extDataC,jdbcType=VARCHAR},
@@ -386,8 +401,8 @@
   <sql id="Batch_Insert_Column_List">
     #{item.id}, #{item.taskId}, #{item.templateId}, #{item.templateContent}, #{item.phoneNumberSet}, 
     #{item.templateParam}, #{item.taskType}, #{item.sendTime}, #{item.cronExpression}, 
-    #{item.extDataA}, #{item.extDataB}, #{item.extDataC}, #{item.createdDatetime}, #{item.createdId}, 
-    #{item.modifiedDatetime}, #{item.modifiedId}
+    #{item.status}, #{item.extDataA}, #{item.extDataB}, #{item.extDataC}, #{item.createdDatetime}, 
+    #{item.createdId}, #{item.modifiedDatetime}, #{item.modifiedId}
   </sql>
   <insert id="insertBatch" parameterType="java.util.List">
     insert into TXT_SMS_TASK(

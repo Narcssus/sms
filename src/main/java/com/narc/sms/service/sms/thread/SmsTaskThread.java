@@ -53,7 +53,7 @@ public class SmsTaskThread extends CommonTask {
         log.debug("执行短信提醒检查任务，{}", DateUtils.convertDateToStr(now, DateUtils.FORMAT_19));
         //查询未来五分钟内到期的
         List<TxtSmsTask> list = txtSmsTaskDaoService.selectBySendTime(
-                DateUtils.addMinutes(now, 4), DateUtils.addMinutes(now, 5));
+                DateUtils.addMinutes(now, 5));
         log.debug("短信提醒检查任务，检索到条数{}", list.size());
         for (TxtSmsTask task : list) {
             log.debug("短信提醒检查任务，处理任务ID{}", task.getTaskId());
@@ -69,7 +69,7 @@ public class SmsTaskThread extends CommonTask {
         List<String> templateParam = JSON.parseArray(task.getTemplateParam(), String.class);
         smsService.sendMessage(task.getTemplateId(),
                 phones.toArray(new String[0]), templateParam.toArray(new String[0]), task.getTaskId());
-        if("2".equals(task.getTaskType())){
+        if ("2".equals(task.getTaskType())) {
             //设置下一次执行时间
             String cron = task.getCronExpression();
             List<Date> dateList = DateUtils.getNextExcTime(cron, 2);
@@ -80,6 +80,12 @@ public class SmsTaskThread extends CommonTask {
             newTask.setSendTime(dateList.get(1));
             newTask.setId(task.getId());
             newTask.setModifiedDatetime(new Date());
+            txtSmsTaskDaoService.updateByPrimaryKeySelective(newTask);
+        } else {
+            TxtSmsTask newTask = new TxtSmsTask();
+            newTask.setId(task.getId());
+            newTask.setModifiedDatetime(new Date());
+            newTask.setStatus("1");
             txtSmsTaskDaoService.updateByPrimaryKeySelective(newTask);
         }
     }

@@ -16,6 +16,7 @@
     <result column="TASK_TYPE" jdbcType="VARCHAR" property="taskType" />
     <result column="SEND_TIME" jdbcType="TIMESTAMP" property="sendTime" />
     <result column="CRON_EXPRESSION" jdbcType="VARCHAR" property="cronExpression" />
+    <result column="STATUS" jdbcType="VARCHAR" property="status" />
     <result column="EXT_DATA_A" jdbcType="VARCHAR" property="extDataA" />
     <result column="EXT_DATA_B" jdbcType="VARCHAR" property="extDataB" />
     <result column="EXT_DATA_C" jdbcType="VARCHAR" property="extDataC" />
@@ -26,7 +27,7 @@
   </resultMap>
   <sql id="Base_Column_List">
     ID, TASK_ID, TEMPLATE_ID, TEMPLATE_CONTENT, PHONE_NUMBER_SET, TEMPLATE_PARAM, TASK_TYPE, 
-    SEND_TIME, CRON_EXPRESSION, EXT_DATA_A, EXT_DATA_B, EXT_DATA_C, CREATED_DATETIME, 
+    SEND_TIME, CRON_EXPRESSION, STATUS, EXT_DATA_A, EXT_DATA_B, EXT_DATA_C, CREATED_DATETIME, 
     CREATED_ID, MODIFIED_DATETIME, MODIFIED_ID
   </sql>
   <!-- 该注释以下的内容不会被覆盖，请不要删除或修改此条注释内容-->

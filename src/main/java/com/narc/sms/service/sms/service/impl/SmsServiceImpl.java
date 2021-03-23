@@ -20,11 +20,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 /**
  * @author Narcssus
@@ -117,9 +119,29 @@ public class SmsServiceImpl implements SmsService {
                 TxtSmsTask task = JSON.parseObject(taskObj.toJSONString(), TxtSmsTask.class);
                 task.setTemplateContent(smsTemplateDaoService.getContentById(task.getTemplateId()));
                 task.setTaskId(UUID.randomUUID().toString());
+                task.setStatus("0");
                 smsTaskDaoService.insertOne(task);
             } catch (Exception e) {
                 log.error("", e);
+                res.put("res", "fail");
+            }
+        }
+        return res;
+    }
+
+    @Override
+    public JSONObject cancelSmsTask(JSONObject req) {
+        JSONObject res = new JSONObject();
+        res.put("res", "success");
+        String phoneNo = req.getString("phoneNo");
+        String taskSeqNo = req.getString("taskSeqNo");
+        List<TxtSmsTask> list = smsTaskDaoService.selectByPhoneNoAndSeqNo(phoneNo, taskSeqNo);
+        if (CollectionUtils.isEmpty(list)) {
+            res.put("res", "fail");
+        } else {
+            List<Integer> ids = list.stream().map(TxtSmsTask::getId).collect(Collectors.toList());
+            int num = smsTaskDaoService.cancelTask(ids);
+            if (num != ids.size()) {
                 res.put("res", "fail");
             }
         }
