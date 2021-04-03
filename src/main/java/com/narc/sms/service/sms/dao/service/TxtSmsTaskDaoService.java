@@ -8,6 +8,7 @@ import com.narc.sms.service.sms.entity.TxtSmsTask;
 import javax.annotation.Resource;
 
 import com.narc.sms.service.sms.entity.TxtSmsTaskExample;
+import com.narc.sms.service.sms.utils.DateUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
@@ -37,6 +38,14 @@ public class TxtSmsTaskDaoService {
         TxtSmsTaskExample example = new TxtSmsTaskExample();
         example.createCriteria().andPhoneNumberSetEqualTo(JSON.toJSONString(Collections.singletonList(phoneNo)))
                 .andStatusEqualTo("0");
+        return txtSmsTaskMapper.selectByExample(example);
+    }
+
+    public List<TxtSmsTask> selectLast12HourByPhoneNo(String phoneNo) {
+        TxtSmsTaskExample example = new TxtSmsTaskExample();
+        example.createCriteria().andPhoneNumberSetEqualTo(JSON.toJSONString(Collections.singletonList(phoneNo)))
+                .andStatusNotEqualTo("0")
+                .andSendTimeGreaterThanOrEqualTo(DateUtils.addHours(new Date(),-12));
         return txtSmsTaskMapper.selectByExample(example);
     }
 

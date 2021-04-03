@@ -151,9 +151,11 @@ public class SmsServiceImpl implements SmsService {
     @Override
     public JSONObject getSmsTask(JSONObject req) {
         String phoneNo = req.getString("phoneNo");
+        List<TxtSmsTask> doneList = smsTaskDaoService.selectLast12HourByPhoneNo(phoneNo);
         List<TxtSmsTask> list = smsTaskDaoService.selectByPhoneNo(phoneNo);
         JSONObject res = new JSONObject();
         res.put("list", list);
+        res.put("doneList", doneList);
         return res;
     }
 }
